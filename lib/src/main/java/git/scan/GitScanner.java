@@ -23,7 +23,9 @@ public class GitScanner {
 
     File file = new File(repoPath);
     try (Git git = Git.open(file)) {
-      git.checkout().setName("main").call();
+      git.checkout()
+          .setName("main")
+          .call();
       Repository repository = git.getRepository();
       ObjectId lastCommitId = repository.resolve(Constants.HEAD);
 
@@ -49,6 +51,7 @@ public class GitScanner {
 
   @FunctionalInterface
   public interface TreeWalkMapper {
+
     void apply(Git git, Repository repository, RevWalk revWalk, TreeWalk treeWalk)
         throws IOException, GitAPIException;
   }
