@@ -9,6 +9,19 @@
 plugins {
     // Apply the java-library plugin for API and implementation separation.
     id 'java-library'
+    id 'maven-publish'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.devjk'
+            artifactId = 'git-scan'
+            version = '1.0'
+
+            from components.java
+        }
+    }
 }
 
 repositories {
